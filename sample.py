@@ -8,5 +8,8 @@ def get_user():
   userid = request.args.get('id')
   conn = sqlite3.connect(':memory:')
   cursor = conn.cursor
-  cursor.execute("SELECT name FROM user WHERE id = {userid}")
+  cursor.execute(f"SELECT name FROM user WHERE id = {userid}")
+  user = cursor.fetchone()
+
+return f"User: {user[0]}"
   
